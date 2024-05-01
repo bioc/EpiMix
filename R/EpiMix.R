@@ -291,9 +291,7 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
             # No gene expression data, just report the gene names and
             # prevalence
             prev.data <- addGeneNames(prev.data, ProbeAnnotation)
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Gene, .data$Probe, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Gene", "Probe", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
@@ -301,12 +299,11 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
         cat("Identifying functional CpG-gene pairs...\n")
         FunctionalPairs <- generateFunctionalPairs(MET_matrix, colnames(MET_Control), gene.expression.data,
             ProbeAnnotation, raw.pvalue.threshold, adjusted.pvalue.threshold, cores, correlation = correlation)
+
         if (is.null(FunctionalPairs)) {
             cat("Not enough differentially methylated genes or not sufficient gene expression data, returning EpiMix results...\n")
             prev.data <- addGeneNames(prev.data, ProbeAnnotation)
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Probe, .data$Gene, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Probe", "Gene", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
@@ -376,9 +373,7 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
             # No gene expression data, just report the gene names and
             # prevalence
             prev.data <- addGeneNames(prev.data, ProbeAnnotation)
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Gene, .data$Probe, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Gene", "Probe", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
@@ -389,9 +384,7 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
         if (is.null(FunctionalPairs)) {
             cat("Not enough differentially methylated genes or not sufficient gene expression data, returning EpiMix results...\n")
             prev.data <- addGeneNames(prev.data, ProbeAnnotation)
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Probe, .data$Gene, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Gene", "Probe", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
@@ -457,9 +450,7 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
             # No gene expression data, just report the gene names and
             # prevalence
             prev.data <- addGeneNames(prev.data, ProbeAnnotation)
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Gene, .data$Probe, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Gene", "Probe", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
@@ -470,9 +461,7 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
         if (is.null(FunctionalPairs)) {
             cat("Not enough differentially methylated genes or not sufficient gene expression data, returning EpiMix results...\n")
             prev.data <- addGeneNames(prev.data, ProbeAnnotation)
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Probe, .data$Gene, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Gene", "Probe", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
@@ -548,9 +537,7 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
             # prevalence
             prev.data["Gene"] <- ProbeAnnotation$gene_HGNC[which(names(ProbeAnnotation) %in%
                 rownames(MET_matrix))]
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Gene, .data$Probe, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Gene", "Probe", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
@@ -564,9 +551,7 @@ EpiMix <- function(methylation.data, gene.expression.data, sample.info,
             cat("Not enough differentially methylated genes or not sufficient gene expression data, returning EpiMix results...\n")
             prev.data["Gene"] <- ProbeAnnotation$gene_HGNC[which(names(ProbeAnnotation) %in%
                 rownames(MET_matrix))]
-            MethylMixResults$FunctionalPairs <- prev.data %>%
-                dplyr::select(.data$Probe, .data$Gene, .data$"Prevalence of hypo (%)",
-                  data$"Prevalence of hyper (%)")
+            MethylMixResults$FunctionalPairs <- prev.data[, c("Gene", "Probe", "Prevalence of hypo (%)", "Prevalence of hyper (%)")]
             return(MethylMixResults)
         }
 
