@@ -80,7 +80,6 @@ NULL
   return(list(high.met.samples = high.met.samples, low.met.samples = low.met.samples))
 }
 
-
 #' The test_gene_expr function
 #' @description Helper function to test whether the expression levels of a gene is reversely correlated with the methylation state of a probe.
 #' @param gene character string indicating a target gene to be modeled.
@@ -126,6 +125,7 @@ test_gene_expr <- function(gene, probe, DM_values, gene.expr.values, correlation
   dataDEGs["Raw.p"] <- p_value
   return(dataDEGs)
 }
+
 
 #' The generateFunctionalPairs function
 #' @description Wrapper function to get functional CpG-gene pairs, used for Regular, miRNA and lncRNA modes
@@ -179,12 +179,14 @@ generateFunctionalPairs <- function(MET_matrix, control.names, gene.expression.d
                                         .verbose = FALSE) %dopar% {
                                           gene <- uniqueGenes[i]
                                           probes <- ProbeAnnotation$probe[which(ProbeAnnotation$gene == gene)]
+                                          cur_pairs <- data.frame()
                                           for(probe in probes){
                                             DM_values <- MET_matrix[probe, ]
                                             gene.expr.values <- gene.expression.data[gene, ]
                                             pairs <- test_gene_expr(gene, probe, DM_values, gene.expr.values, correlation = correlation)
-                                            FunctionalPairs <- rbind(FunctionalPairs, pairs)
+                                            cur_pairs <- rbind(cur_pairs, pairs)
                                           }
+                                          cur_pairs
                                         }
   }
   close(pb)
