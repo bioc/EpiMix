@@ -575,7 +575,7 @@ getRegionNearGenes <- function(TRange = NULL,
 #' @param genome Which genome build will be used: hg38 (default) or hg19.
 #' @return GENCODE gene annotation if TSS is not specified. Coordinates of GENCODE gene promoter regions if TSS is specified.
 #' @author Lijing Yao (maintainer: lijingya@usc.edu)
-#' @import GenomeInfoDb
+#' @import Seqinfo
 #' @importFrom GenomicFeatures transcripts
 #' @importFrom GenomicRanges makeGRangesFromDataFrame
 #' @importFrom biomaRt useEnsembl
